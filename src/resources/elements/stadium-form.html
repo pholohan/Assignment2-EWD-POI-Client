@@ -1,0 +1,10 @@
+<template>
+  <form submit.trigger="addStadium()" class="ui form stacked segment">
+    <h3 class="ui dividing header">Add a Stadium</h3>
+    <div class="field"><label>Stadium Name</label><input value.bind="name" placeholder="Stadium Name"></div>
+    <div class="field"><label>Capacity</label><input value.bind="capacity" placeholder="Capacity"></div>
+    <div class="field"><label>County</label><input value.bind="county" placeholder="County"></div>
+    <div class="field"><label>Province</label><input value.bind="province" placeholder="Province"></div>
+    <button class="ui blue submit button">Add Stadium</button>
+  </form>
+</template>

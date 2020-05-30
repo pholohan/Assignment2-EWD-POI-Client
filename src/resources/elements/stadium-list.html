@@ -1,0 +1,21 @@
+<template>
+  <h4 class="ui dividing header">Stadiums</h4>
+  <table class="ui celled table segment">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>County</th>
+        <th>Capacity</th>
+        <th>Province</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr repeat.for="stadium of stadiums">
+        <td>${stadium.name}</td>
+        <td>${stadium.county}</td>
+        <td>${stadium.capacity}</td>
+        <td>${stadium.province}</td>
+      </tr>
+    </tbody>
+  </table>
+</template>
