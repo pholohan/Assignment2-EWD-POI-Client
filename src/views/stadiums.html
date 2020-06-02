@@ -2,11 +2,11 @@
   <require from="../resources/elements/stadium-form"></require>
   <require from="../resources/elements/stadium-list"></require>
 
-  <div class="ui stackable two column grid">
-    <div class="column">
-      <stadium-form stadiums.bind="stadiums"></stadium-form>
+  <div class="ui stackable two row grid">
+    <div class="row">
+      <stadium-form stadiums.bind="stadiums" poiProvince.bind="poiProvinces" poiCounty.bind="poiCounty"></stadium-form>
     </div>
-    <div class="column">
+    <div class="row">
       <stadium-list stadiums.bind="stadiums"></stadium-list>
     </div>
   </div>

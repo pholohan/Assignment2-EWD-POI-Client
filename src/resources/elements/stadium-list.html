@@ -1,20 +1,32 @@
 <template>
   <h4 class="ui dividing header">Stadiums</h4>
-  <table class="ui celled table segment">
+  <table class="ui fixed celled table">
     <thead>
       <tr>
+        <th>Stadium</th>
         <th>Name</th>
         <th>County</th>
         <th>Capacity</th>
         <th>Province</th>
+        <th>Longtitude</th>
+        <th>Latitude</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Upload</th>
       </tr>
     </thead>
     <tbody>
       <tr repeat.for="stadium of stadiums">
+        <td><img src="${stadium.stadiumURL}"> </td>
         <td>${stadium.name}</td>
         <td>${stadium.county}</td>
         <td>${stadium.capacity}</td>
         <td>${stadium.province}</td>
+        <td>${stadium.lng}</td>
+        <td>${stadium.lat}</td>
+        <td><a href="/editstadium/{{_id}}" class="ui icon button"><i class="edit outline icon"></i></a></td>
+        <td><a href="/deletestadium/{{_id}}" class="ui icon button"><i class="trash alternate outline icon"></i></a></td>
+        <td><a href="/stadiumupload/{{_id}}" class="ui icon button"><i class="upload icon"></i></a></td>
       </tr>
     </tbody>
   </table>
