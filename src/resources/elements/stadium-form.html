@@ -1,10 +1,30 @@
 <template>
-  <form submit.trigger="addStadium()" class="ui form stacked segment">
+  <form submit.trigger="addStadium()" class="ui segment form">
     <h3 class="ui dividing header">Add a Stadium</h3>
-    <div class="field"><label>Stadium Name</label><input value.bind="name" placeholder="Stadium Name"></div>
-    <div class="field"><label>Capacity</label><input value.bind="capacity" placeholder="Capacity"></div>
-    <div class="field"><label>County</label><input value.bind="county" placeholder="County"></div>
-    <div class="field"><label>Province</label><input value.bind="province" placeholder="Province"></div>
+    <div class="three fields">
+      <div class="field"><label>Stadium Name</label><input value.bind="name" placeholder="Stadium Name"></div>
+      <div class="field"><label>Capacity</label><input value.bind="capacity" placeholder="Capacity"></div>
+      <div class="field"><label>Select County</label>
+        <select value.bind="selectedCounty">
+          <option model.bind="null">County...</option>
+          <option repeat.for="county of poiCounty" model.bind="county">${county}</option>
+        </select>
+      </div>
+    </div>
+    <div class="three fields">
+      <div class="grouped fields">
+        <label>Province</label>
+        <div class="grouped fields">
+          <div class="ui radio checkbox" repeat.for="province of poiProvinces">
+            <input type="radio" value.bind="province" checked.bind="selectedProvince">
+            <label>${province}</label>
+          </div>
+        </div>
+      </div>
+      <div class="field"><label>Long</label><input value.bind="lng" placeholder="Longtitude"></div>
+      <div class="field"><label>Lat</label><input value.bind="lat" placeholder="Latitude"></div>
+      <div class="field"><label>URL</label><input value.bind="stadiumURL" placeholder="Img URL"></div>
+    </div>
     <button class="ui blue submit button">Add Stadium</button>
   </form>
 </template>
