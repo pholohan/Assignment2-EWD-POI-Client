@@ -3,10 +3,10 @@ import { StadiumService } from '../services/stadium-service';
 
 @inject(StadiumService)
 export class Signup {
-  firstName = 'Marge';
-  lastName = 'Simpson';
-  email = 'marge@simpson.com';
-  password = 'secret';
+  firstName = '';
+  lastName = '';
+  email = '';
+  password = '';
   prompt = '';
 
   constructor(private ds: StadiumService) {}
