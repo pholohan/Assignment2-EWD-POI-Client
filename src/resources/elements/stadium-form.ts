@@ -29,6 +29,7 @@ export class StadiumForm {
       stadiumURL: this.stadiumURL,
       lng: this.lng,
       lat: this.lat,
+      _id: ''
     };
     this.stadiums.push(stadium);
     console.log(stadium);

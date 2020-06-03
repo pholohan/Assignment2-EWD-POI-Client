@@ -8,31 +8,41 @@ import { HttpClient } from 'aurelia-http-client';
 export class StadiumService {
   stadiums: Stadium[] = [];
   users: Map<string, User> = new Map();
+  usersById: Map<string, User> = new Map();
 
   constructor(private httpClient: HttpClient, private au: Aurelia, private router: Router) {
     httpClient.configure(http => {
-      http.withBaseUrl('http://localhost:8080');
+      http.withBaseUrl('http://localhost:3000');
     });
     this.getStadiums();
     this.getUsers();
   }
 
   async getStadiums() {
-    const response = await this.httpClient.get('/api/stadiums.json');
+    const response = await this.httpClient.get('/api/stadiums');
     this.stadiums = await response.content;
     console.log(this.stadiums);
   }
 
   async getUsers() {
-    const response = await this.httpClient.get('/api/users.json');
+    const response = await this.httpClient.get('/api/users');
     const users = await response.content;
     users.forEach(user => {
       this.users.set(user.email, user);
+      this.usersById.set(user._id, user);
     });
   }
 
-  signup(firstName: string, lastName: string, email: string, password: string) {
-    //this.changeRouter(PLATFORM.moduleName('app'))
+  async signup(firstName: string, lastName: string, email: string, password: string) {
+    const user = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password,
+    };
+    const response = await this.httpClient.post('/api/users', user);
+    const newUser = await response.content;
+    this.changeRouter(PLATFORM.moduleName('app'));
     return false;
   }
 
