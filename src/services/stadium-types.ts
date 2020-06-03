@@ -5,7 +5,8 @@ export interface Stadium {
   province: string;
   stadiumURL: string;
   lng: number;
-  lat: number
+  lat: number;
+  _id :string;
 }
 
 export interface User {
@@ -13,4 +14,5 @@ export interface User {
   lastName: string;
   email: string;
   password: string;
+  _id: string;
 }
