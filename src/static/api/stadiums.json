@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Croke Park",
+    "county": "Dublin",
+    "capacity": 85000,
+    "province": "Leinster",
+    "stadiumURL": "https://res.cloudinary.com/dbywou1bu/image/upload/v1582974708/5e4f0587b0e30f1f2c9a04a0.jpg"
+  },
+  {
+    "name": "Walsh Park",
+    "county": "Waterford",
+    "capacity": 10000,
+    "province": "Munster",
+    "stadiumURL": "https://res.cloudinary.com/dbywou1bu/image/upload/v1582974925/5e5a47768203fd1d54d96c0e.jpg"
+  },
+  {
+    "name": "Semple Stadium",
+    "county": "Tipperary",
+    "capacity": 50000,
+    "province": "Munster",
+    "stadiumURL": "https://res.cloudinary.com/dbywou1bu/image/upload/v1582995761/5e5a48b90d78020c38c2293e.jpg"
+  }
+]

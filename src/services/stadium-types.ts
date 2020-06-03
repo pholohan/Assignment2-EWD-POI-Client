@@ -7,3 +7,10 @@ export interface Stadium {
   lng: number;
   lat: number
 }
+
+export interface User {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
