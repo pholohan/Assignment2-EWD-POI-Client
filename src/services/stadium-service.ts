@@ -14,8 +14,6 @@ export class StadiumService {
     httpClient.configure(http => {
       http.withBaseUrl('http://localhost:3000');
     });
-    this.getStadiums();
-    this.getUsers();
   }
 
   async getStadiums() {
@@ -47,17 +45,30 @@ export class StadiumService {
   }
 
   async login(email: string, password: string) {
-    const user = this.users.get(email);
-    if (user && (user.password === password)) {
-      this.changeRouter(PLATFORM.moduleName('app'))
-      return true;
-    } else {
-      return false;
+    let success = false;
+    try {
+      const response = await this.httpClient.post('/api/users/authenticate', { email: email, password: password });
+      const status = await response.content;
+      if (status.success) {
+        this.httpClient.configure((configuration) => {
+          configuration.withHeader('Authorization', 'bearer ' + status.token);
+        });
+        await this.getStadiums();
+        await this.getUsers();
+        this.changeRouter(PLATFORM.moduleName('app'));
+        success = status.success;
+      }
+    } catch (e) {
+      success = false;
     }
+    return success;
   }
 
   logout() {
-    this.changeRouter(PLATFORM.moduleName('start'))
+    this.httpClient.configure(configuration => {
+      configuration.withHeader('Authorization', '');
+    });
+    this.changeRouter(PLATFORM.moduleName('start'));
   }
 
   changeRouter(module:string) {
