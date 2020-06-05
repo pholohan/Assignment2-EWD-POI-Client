@@ -1,11 +1,9 @@
 export interface Stadium {
   name: string;
-  capacity: string;
+  capacity: number;
   county: string;
   province: string;
   stadiumURL: string;
-  lng: number;
-  lat: number;
   _id :string;
 }
 

@@ -17,7 +17,7 @@ export class StadiumService {
   }
 
   async getStadiums() {
-    const response = await this.httpClient.get('/api/stadiums');
+    const response = await this.httpClient.get('/api/userstadiums');
     this.stadiums = await response.content;
     console.log(this.stadiums);
   }
@@ -29,6 +29,19 @@ export class StadiumService {
       this.users.set(user.email, user);
       this.usersById.set(user._id, user);
     });
+  }
+
+  async createStadium(name: string, county: string, capacity: number, province: string, stadiumURL: string,) {
+    const stadium = {
+      name: name,
+      county: county,
+      capacity: capacity,
+      province: province,
+      stadiumURL: stadiumURL,
+    };
+    const response = await this.httpClient.post('/api/stadiums', stadium);
+    const newStadium = await response.content;
+    this.stadiums.push(newStadium);
   }
 
   async signup(firstName: string, lastName: string, email: string, password: string) {
