@@ -1,13 +1,14 @@
+import { inject } from 'aurelia-framework';
 import { bindable } from 'aurelia-framework';
 import { Stadium } from "../../services/stadium-types";
+import { StadiumService } from '../../services/stadium-service';
 
+@inject(StadiumService)
 export class StadiumForm {
   name: string;
   county: string;
-  capacity: string;
+  capacity: number;
   stadiumURL: string;
-  lng: number;
-  lat: number
   @bindable
   stadiums: Stadium[] = [];
   @bindable
@@ -20,18 +21,9 @@ export class StadiumForm {
   selectedProvince = '';
   selectedCounty = '';
 
+  constructor(private ds: StadiumService) {}
+
   addStadium() {
-    const stadium = {
-      name: this.name,
-      county: this.selectedCounty,
-      capacity: this.capacity,
-      province: this.selectedProvince,
-      stadiumURL: this.stadiumURL,
-      lng: this.lng,
-      lat: this.lat,
-      _id: ''
-    };
-    this.stadiums.push(stadium);
-    console.log(stadium);
+    this.ds.createStadium(this.name, this.selectedCounty, this.capacity, this.selectedProvince, this.stadiumURL);
   }
 }
