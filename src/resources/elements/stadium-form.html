@@ -1,7 +1,7 @@
 <template>
   <form submit.trigger="addStadium()" class="ui segment form">
     <h3 class="ui dividing header">Add a Stadium</h3>
-    <div class="three fields">
+    <div class="four fields">
       <div class="field"><label>Stadium Name</label><input value.bind="name" placeholder="Stadium Name"></div>
       <div class="field"><label>Capacity</label><input value.bind="capacity" placeholder="Capacity"></div>
       <div class="field"><label>Select County</label>
@@ -10,8 +10,6 @@
           <option repeat.for="county of poiCounty" model.bind="county">${county}</option>
         </select>
       </div>
-    </div>
-    <div class="three fields">
       <div class="grouped fields">
         <label>Province</label>
         <div class="grouped fields">
