@@ -3,6 +3,7 @@ import { Router } from 'aurelia-router';
 import { PLATFORM } from 'aurelia-pal';
 import { Stadium, User } from './Stadium-types';
 import { HttpClient } from 'aurelia-http-client';
+import * as environment from '../../config/environment.json';
 
 @inject(HttpClient, Aurelia, Router)
 export class StadiumService {
@@ -31,7 +32,14 @@ export class StadiumService {
     });
   }
 
-  async createStadium(name: string, county: string, capacity: number, province: string, stadiumURL: string,) {
+  async getStadiumsbyId(id: string) {
+    const response = await this.httpClient.get('/api/stadiums/' + id);
+    this.stadiums = await response.content;
+    console.log(this.stadiums);
+  }
+
+
+  async createStadium(name: string, county: string, capacity: number, province: string, stadiumURL: string) {
     const stadium = {
       name: name,
       county: county,
@@ -88,5 +96,24 @@ export class StadiumService {
     this.router.navigate('/', { replace: true, trigger: false });
     this.router.reset();
     this.au.setRoot(PLATFORM.moduleName(module));
+  }
+
+  async uploadImage(imageFile) {
+    const cloudinaryClient = new HttpClient();
+    cloudinaryClient.configure(http => {
+      http.withBaseUrl(`https://api.cloudinary.com/v1_1/${environment.cloudinary.name}`);
+    })
+    const formData = new FormData();
+    formData.append('file', imageFile);
+    formData.append('upload_preset', `${environment.cloudinary.preset}`);
+
+    try {
+      const response = await cloudinaryClient.post('/image/upload', formData);
+      const test = response.content.url;
+      console.log(test)
+      return test;
+    } catch (err) {
+      console.log(err);
+    }
   }
 }
