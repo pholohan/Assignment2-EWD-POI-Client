@@ -1,4 +1,8 @@
 {
   "debug": true,
-  "testing": true
+  "testing": true,
+  "cloudinary": {
+    "name": "dbywou1bu",
+    "preset": "scfdklsn"
+  }
 }
