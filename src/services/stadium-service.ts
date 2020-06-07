@@ -13,7 +13,7 @@ export class StadiumService {
 
   constructor(private httpClient: HttpClient, private au: Aurelia, private router: Router) {
     httpClient.configure(http => {
-      http.withBaseUrl('http://localhost:3000');
+      http.withBaseUrl('https://limitless-journey-24128.herokuapp.com/');
     });
   }
 
