@@ -1,9 +1,12 @@
+import { inject } from 'aurelia-framework';
 import { RouterConfiguration, Router } from 'aurelia-router';
 import { PLATFORM } from 'aurelia-pal';
+import { StadiumService } from './services/stadium-service';
 
+@inject(StadiumService)
 export class Start {
   router: Router;
-
+  constructor(private ds: StadiumService) {}
   configureRouter(config: RouterConfiguration, router: Router) {
     config.map([
       {
@@ -22,5 +25,9 @@ export class Start {
       }
     ]);
     this.router = router;
+  }
+
+  attached() {
+    this.ds.checkIsAuthenticated();
   }
 }

@@ -74,6 +74,7 @@ export class StadiumService {
         this.httpClient.configure((configuration) => {
           configuration.withHeader('Authorization', 'bearer ' + status.token);
         });
+        localStorage.stadium = JSON.stringify(response.content);
         await this.getStadiums();
         await this.getUsers();
         this.changeRouter(PLATFORM.moduleName('app'));
@@ -86,6 +87,7 @@ export class StadiumService {
   }
 
   logout() {
+    localStorage.stadium = null;
     this.httpClient.configure(configuration => {
       configuration.withHeader('Authorization', '');
     });
@@ -114,6 +116,19 @@ export class StadiumService {
       return test;
     } catch (err) {
       console.log(err);
+    }
+  }
+
+  async checkIsAuthenticated() {
+    let authenticated = false;
+    if (localStorage.stadium !== 'null') {
+      authenticated = true;
+      this.httpClient.configure(http => {
+        const auth = JSON.parse(localStorage.stadium);
+        http.withHeader('Authorization', 'bearer ' + auth.token);
+      });
+      await this.getStadiums();
+      this.changeRouter(PLATFORM.moduleName('app'));
     }
   }
 }
